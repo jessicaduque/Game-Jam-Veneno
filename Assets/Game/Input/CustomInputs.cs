@@ -35,6 +35,51 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a4ebb72-b864-428a-b5ae-fab408cf081a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b823205-ff43-47e4-b3f8-21809aeb02e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""536086d2-caf8-41d0-a45a-92a9b72a1331"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AtaqueMorder"",
+                    ""type"": ""Button"",
+                    ""id"": ""597d96db-47f0-4ef7-971c-65917b230238"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AtaqueAssoviar"",
+                    ""type"": ""Button"",
+                    ""id"": ""5af3ef98-6ace-409b-a8de-1dc25cab0330"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -50,20 +95,9 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""right"",
                     ""id"": ""8ef3c572-f6e2-4e28-8c23-a3702c4a377f"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""3ac440bc-8aa8-4e86-9f15-22baa941baf2"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -83,17 +117,6 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""f3293ee6-7a80-48eb-9e00-c9074e62ec81"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Arrow Keys"",
                     ""id"": ""a6957a56-6817-4106-9aa2-9bdbb5dc3a1f"",
                     ""path"": ""2DVector"",
@@ -105,20 +128,9 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""right"",
                     ""id"": ""b9508cae-7b6c-4124-a8f5-5a68bbd360ac"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""a6356d3d-3c6e-42a4-85f0-415232f4fe81"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -128,7 +140,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""3435c36a-db74-428c-9d99-cdb1c8db53b0"",
+                    ""id"": ""a6356d3d-3c6e-42a4-85f0-415232f4fe81"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -138,15 +150,114 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""69594f39-2246-4609-9d14-c43cec9e34c7"",
+                    ""name"": """",
+                    ""id"": ""95bd316c-505e-48d7-b2c5-3b550ba44b3a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b1912dd-61de-4a0f-8108-83ae4d4c319c"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac4b4d02-c736-4222-9c83-3911cdfe6c7a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""241c6022-62ef-4d85-9b61-e1cd7d858627"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89cfbdf0-708e-4313-9db6-39d484e8647d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""674c7f0b-3c0d-4bb4-b6d6-896811047ca3"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aeedb075-8769-46c9-8541-5eedec1c25e0"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""709c5514-d0e2-4dfa-8f99-2daedebc4ff7"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e9c81e1-83be-40aa-ad28-45f0305ef927"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AtaqueMorder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e25f61d4-af4a-4112-95f0-f8cb003c1099"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AtaqueAssoviar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +267,11 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_AtaqueMorder = m_Player.FindAction("AtaqueMorder", throwIfNotFound: true);
+        m_Player_AtaqueAssoviar = m_Player.FindAction("AtaqueAssoviar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,11 +332,21 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Down;
+    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_AtaqueMorder;
+    private readonly InputAction m_Player_AtaqueAssoviar;
     public struct PlayerActions
     {
         private @CustomInputs m_Wrapper;
         public PlayerActions(@CustomInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Down => m_Wrapper.m_Player_Down;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @AtaqueMorder => m_Wrapper.m_Player_AtaqueMorder;
+        public InputAction @AtaqueAssoviar => m_Wrapper.m_Player_AtaqueAssoviar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +359,21 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Down.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @AtaqueMorder.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueMorder;
+                @AtaqueMorder.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueMorder;
+                @AtaqueMorder.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueMorder;
+                @AtaqueAssoviar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
+                @AtaqueAssoviar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
+                @AtaqueAssoviar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -240,6 +381,21 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @AtaqueMorder.started += instance.OnAtaqueMorder;
+                @AtaqueMorder.performed += instance.OnAtaqueMorder;
+                @AtaqueMorder.canceled += instance.OnAtaqueMorder;
+                @AtaqueAssoviar.started += instance.OnAtaqueAssoviar;
+                @AtaqueAssoviar.performed += instance.OnAtaqueAssoviar;
+                @AtaqueAssoviar.canceled += instance.OnAtaqueAssoviar;
             }
         }
     }
@@ -247,5 +403,10 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnAtaqueMorder(InputAction.CallbackContext context);
+        void OnAtaqueAssoviar(InputAction.CallbackContext context);
     }
 }

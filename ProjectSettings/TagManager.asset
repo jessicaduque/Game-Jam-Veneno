@@ -44,9 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 1722782361
     locked: 0
-  - name: Plataformas
+  - name: Floor
     uniqueID: 4201325473
     locked: 0
-  - name: Personagens
+  - name: Characters
     uniqueID: 143746475
     locked: 0
