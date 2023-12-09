@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class PatrollingPoint : MonoBehaviour
 {
-    public bool hasGuard { private set; get; }
+    private GameObject guard = null;
+
+    public GameObject GetGuard()
+    {
+        return guard;
+    }
+
+    public void SetGuard(GameObject guard)
+    {
+        this.guard = guard;
+    }
 }

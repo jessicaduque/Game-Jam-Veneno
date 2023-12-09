@@ -18,14 +18,16 @@ public class PlayerController : Singleton<PlayerController>
     private int amountJumps = 2;
     private bool jumped = false;
     private bool canJump = true;
+    private bool canCheckCancelled = true;
     [SerializeField] private float jumpingPower = 16f;
     private int dashPress = 0;
 
     [SerializeField] SpriteRenderer thisSpriteRenderer;
     [SerializeField] private BoxCollider2D thisCollider;
-    private Rigidbody2D thisRb = null;
+    [SerializeField] private BoxCollider2D feetCollider;
+    public Rigidbody2D thisRb = null;
 
-    private void Awake()
+    private new void Awake()
     {
         SetPosition(inicialPos);
         thisRb = GetComponent<Rigidbody2D>();
@@ -60,7 +62,6 @@ public class PlayerController : Singleton<PlayerController>
             input.Player.Movement.performed += OnMovementPerformed;
             input.Player.Movement.canceled += OnMovementCancelled;
             input.Player.Down.performed += OnDownPerformed;
-            input.Player.Down.canceled += OnDownCancelled;
             input.Player.Jump.performed += JumpPerformed;
             input.Player.Jump.canceled += JumpCancelled;
             input.Player.Dash.performed += OnDashPerformed; // Fundamental ser adicionada após movement devido ao Dash
@@ -70,7 +71,6 @@ public class PlayerController : Singleton<PlayerController>
             input.Player.Movement.performed -= OnMovementPerformed;
             input.Player.Movement.canceled -= OnMovementCancelled;
             input.Player.Down.performed -= OnDownPerformed;
-            input.Player.Down.canceled -= OnDownCancelled;
             input.Player.Jump.performed -= JumpPerformed;
             input.Player.Jump.canceled -= JumpCancelled;
             input.Player.Dash.performed -= OnDashPerformed;
@@ -108,6 +108,15 @@ public class PlayerController : Singleton<PlayerController>
 
     #region Jump
 
+    public void CheckCanJump()
+    {
+        if(amountJumps == 2)
+        {
+            canJump = false;
+            canCheckCancelled = false;
+        }
+    }
+
     private void JumpPerformed(InputAction.CallbackContext context)
     {
         if (amountJumps > 0 && !jumped && canJump)
@@ -122,8 +131,12 @@ public class PlayerController : Singleton<PlayerController>
 
     private void JumpCancelled(InputAction.CallbackContext context)
     {
-        jumped = false;
-        canJump = true;
+        if (canCheckCancelled)
+        {
+            jumped = false;
+            canJump = true;
+        }
+        
     }
 
     #endregion
@@ -132,12 +145,14 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
-
+        feetCollider.enabled = false;
+        StartCoroutine(EnableFeet());
     }
 
-    private void OnDownCancelled(InputAction.CallbackContext context)
+    private IEnumerator EnableFeet()
     {
-
+        yield return new WaitForSeconds(0.2f);
+        feetCollider.enabled = true;
     }
 
     #endregion
@@ -162,12 +177,10 @@ public class PlayerController : Singleton<PlayerController>
         {
             if(_facingRight != facingRight)
             {
-                Debug.Log("lados diferentes");
                 time = 1;
             }
             else if(dashPress == 2)
             {
-                Debug.Log("lados iguais" + time);
                 moveXDash = 1.6f;
                 time = 1;
             }
@@ -206,6 +219,8 @@ public class PlayerController : Singleton<PlayerController>
 
     public void SetJump()
     {
+        canCheckCancelled = true;
+        canJump = true;
         amountJumps = 2;
     }
 
