@@ -15,12 +15,15 @@ public class PlayerController : Singleton<PlayerController>
     private float moveXDash = 1;
     [SerializeField] private float moveSpeed = 8f;
     private bool _facingRight = true;
+    private int dashPress = 0;
+
+    [Header("JUMPS")]
     private int amountJumps = 2;
     private bool jumped = false;
     private bool canJump = true;
     private bool canCheckCancelled = true;
     [SerializeField] private float jumpingPower = 16f;
-    private int dashPress = 0;
+    bool isOnPlatform;
 
     [SerializeField] SpriteRenderer thisSpriteRenderer;
     [SerializeField] private BoxCollider2D thisCollider;
@@ -122,7 +125,7 @@ public class PlayerController : Singleton<PlayerController>
         if (amountJumps > 0 && !jumped && canJump)
         {
             thisRb.velocity = new Vector2(thisRb.velocity.x, 0);
-            thisRb.AddForce(Vector2.up * jumpingPower * (amountJumps == 1 ? 1.2f : 1), ForceMode2D.Impulse);
+            thisRb.AddForce(Vector2.up * jumpingPower * 1, ForceMode2D.Impulse);
             amountJumps--;
             jumped = true;
             canJump = false;
@@ -145,13 +148,19 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
-        feetCollider.enabled = false;
-        StartCoroutine(EnableFeet());
+        if (isOnPlatform)
+        {
+            feetCollider.enabled = false;
+            StartCoroutine(EnableFeet());
+        }
     }
 
     private IEnumerator EnableFeet()
     {
-        yield return new WaitForSeconds(0.2f);
+        while (isOnPlatform)
+        {
+            yield return null;
+        }
         feetCollider.enabled = true;
     }
 
@@ -222,6 +231,11 @@ public class PlayerController : Singleton<PlayerController>
         canCheckCancelled = true;
         canJump = true;
         amountJumps = 2;
+    }
+
+    public void SetIsOnPlatform(bool state)
+    {
+        isOnPlatform = state;
     }
 
     #endregion

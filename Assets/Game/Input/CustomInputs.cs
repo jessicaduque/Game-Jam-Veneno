@@ -74,12 +74,12 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""AtaqueAssoviar"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""5af3ef98-6ace-409b-a8de-1dc25cab0330"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class Platform : Floor
 {
+    [SerializeField]
     private PlayerController _playerController => PlayerController.I;
-    //[SerializeField] private BoxCollider2D thisCollider2D;
+    [SerializeField] private GameObject Player;
 
     private void OnValidate()
     {
-        //thisCollider2D = GetComponent<BoxCollider2D>(); 
+        if(Player == null)
+        {
+            Player = _playerController.gameObject;
+        }
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (collision.gameObject.transform.IsChildOf(Player.transform))
+        {
+            _playerController.SetIsOnPlatform(true);
+        }
+    }
+
+    protected override void OnCollisionExit2D(Collision2D collision)
+    {
+        base.OnCollisionExit2D(collision);
+
+        if (collision.gameObject.transform.IsChildOf(Player.transform))
+        {
+            _playerController.SetIsOnPlatform(false);
+        }
+    }
 }

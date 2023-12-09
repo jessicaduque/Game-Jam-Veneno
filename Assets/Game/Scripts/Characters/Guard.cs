@@ -126,9 +126,8 @@ public class Guard : MonoBehaviour
         float distance = Vector2.Distance(transform.position, Player.transform.position);
         if(distance < 2.1f)
         {
-            Debug.Log("Atacando");
         }
-        else if(distance < 10f)
+        else if(distance < 8f)
         {
             playerIsClose = true;
             if (indiceNextPatrollingPoint != -1)

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private bool activateStayCheck;
+    protected bool activateStayCheck;
 
     private PlayerController _playerController => PlayerController.I;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -35,7 +35,7 @@ public class Floor : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    protected virtual void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
