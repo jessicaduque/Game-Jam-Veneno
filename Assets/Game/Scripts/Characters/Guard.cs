@@ -8,6 +8,10 @@ public class Guard : MonoBehaviour
     [SerializeField] private float hp = 6;
     [SerializeField] private BoxCollider2D thisCollider;
 
+    [Header("Key")]
+    [SerializeField] private bool hasKey;
+    [SerializeField] private int keyID;
+
     [Header("Patrolling")]
     [SerializeField] private Transform[] PatrollingPoints;
     private PatrollingPoint[] PatrollingPointsScripts;
@@ -18,7 +22,9 @@ public class Guard : MonoBehaviour
     private Transform lastPatrollingPoint;
     private bool _facingRight;
     private Sequence movementSequence;
-    
+    private bool changeSide;
+    private float newPosX = 0;
+
     [SerializeField] private SpriteRenderer thisSpriteRenderer;
     
     private GameObject Player;
@@ -123,12 +129,15 @@ public class Guard : MonoBehaviour
 
     private void CheckPlayerClose()
     {
-        float distance = Vector2.Distance(transform.position, Player.transform.position);
-        if(distance < 2.1f)
+        Vector2 playerPos = Player.transform.position;
+        float distance = Vector2.Distance(transform.position, playerPos);
+        if(distance < 2f && !changeSide)
         {
+            StartCoroutine(Attack());
         }
         else if(distance < 8f)
         {
+            StopCoroutine(Attack());
             playerIsClose = true;
             if (indiceNextPatrollingPoint != -1)
             {
@@ -136,7 +145,12 @@ public class Guard : MonoBehaviour
                 PatrollingPointsScripts[indiceNextPatrollingPoint].SetGuard(null);
                 indiceNextPatrollingPoint = -1;
             }
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Player.transform.position.x, transform.position.y), 2 * Time.deltaTime);
+
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerPos.x + newPosX, transform.position.y), 3.8f * Time.deltaTime);
+            if (changeSide && transform.position.x == playerPos.x + newPosX)
+            {
+                changeSide = false;
+            }
         }
         else
         {
@@ -145,6 +159,33 @@ public class Guard : MonoBehaviour
                 DecideNextPatrollingPoint();
                 MoveNextPatrollingPoint();
                 playerIsClose = false;
+            }
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.6f);
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")){
+            float thisX = transform.position.x;
+            if (collision.gameObject.transform.position.x > thisX && Player.transform.position.x > thisX)
+            {
+                changeSide = true;
+                newPosX = 2;
+            }
+            else if(collision.gameObject.transform.position.x < thisX && Player.transform.position.x < thisX)
+            {
+                changeSide = true;
+                newPosX = -2f;
+            }
+            else
+            {
+                changeSide = false;
             }
         }
     }

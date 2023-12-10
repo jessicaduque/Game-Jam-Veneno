@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7247e417ded946843a3b259f47cd77ca
+guid: 3e48f22ee3eef3d46bc48da4787350cb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,55 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tiles_0
+      name: AppleE-Sheet_0
       rect:
         serializedVersion: 2
-        x: 65
-        y: 109
-        width: 126
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c641c7bbcc1d85b4bbd4af927067959f
-      internalID: -475807416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tiles_1
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 334
-        width: 88
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ebb20abdd6ab894db304cbba7ffdb8f
-      internalID: 1747996096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tiles_2
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 137
-        width: 15
-        height: 21
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +131,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94ada229e2dec32469f2a148b2f113ee
-      internalID: 1193680182
+      spriteID: 451b91e6486904244806f3dc37fc4cce
+      internalID: 712417287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AppleE-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad6444d14dab6e4cb3f2d57c329399a
+      internalID: -1136434399
       vertices: []
       indices: 
       edges: []
@@ -190,14 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tiles_1: 1747996096
-      Tiles_0: -475807416
-      Tiles_5: 250267948
-      Tiles_6: -597617762
-      Tiles_7: -1438437808
-      Tiles_4: -289087933
-      Tiles_3: -2037678062
-      Tiles_2: 1193680182
+      AppleE-Sheet_0: 712417287
+      AppleE-Sheet_1: -1136434399
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

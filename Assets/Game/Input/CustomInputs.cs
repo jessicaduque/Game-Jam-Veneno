@@ -80,6 +80,15 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interagir"",
+                    ""type"": ""Button"",
+                    ""id"": ""20e917be-7971-45f7-85d6-80f88cfea5a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -258,6 +267,17 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""action"": ""AtaqueAssoviar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c805175-bd04-42da-a5c6-2e72c145d911"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interagir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -272,6 +292,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_AtaqueMorder = m_Player.FindAction("AtaqueMorder", throwIfNotFound: true);
         m_Player_AtaqueAssoviar = m_Player.FindAction("AtaqueAssoviar", throwIfNotFound: true);
+        m_Player_Interagir = m_Player.FindAction("Interagir", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +358,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_AtaqueMorder;
     private readonly InputAction m_Player_AtaqueAssoviar;
+    private readonly InputAction m_Player_Interagir;
     public struct PlayerActions
     {
         private @CustomInputs m_Wrapper;
@@ -347,6 +369,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @AtaqueMorder => m_Wrapper.m_Player_AtaqueMorder;
         public InputAction @AtaqueAssoviar => m_Wrapper.m_Player_AtaqueAssoviar;
+        public InputAction @Interagir => m_Wrapper.m_Player_Interagir;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +397,9 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @AtaqueAssoviar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
                 @AtaqueAssoviar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
                 @AtaqueAssoviar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtaqueAssoviar;
+                @Interagir.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteragir;
+                @Interagir.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteragir;
+                @Interagir.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteragir;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -396,6 +422,9 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @AtaqueAssoviar.started += instance.OnAtaqueAssoviar;
                 @AtaqueAssoviar.performed += instance.OnAtaqueAssoviar;
                 @AtaqueAssoviar.canceled += instance.OnAtaqueAssoviar;
+                @Interagir.started += instance.OnInteragir;
+                @Interagir.performed += instance.OnInteragir;
+                @Interagir.canceled += instance.OnInteragir;
             }
         }
     }
@@ -408,5 +437,6 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnAtaqueMorder(InputAction.CallbackContext context);
         void OnAtaqueAssoviar(InputAction.CallbackContext context);
+        void OnInteragir(InputAction.CallbackContext context);
     }
 }

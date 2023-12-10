@@ -26,10 +26,8 @@ public class Platform : Floor
         }
     }
 
-    protected override void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnCollisionExit2D(collision);
-
         if (collision.gameObject.transform.IsChildOf(Player.transform))
         {
             _playerController.SetIsOnPlatform(false);

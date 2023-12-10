@@ -2,12 +2,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils.Singleton;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    [Header("INICIAL STATS")]
     [SerializeField] private float hp;
     [SerializeField] private Vector2 inicialPos;
 
+    [Header("COMPONENTS")]
+    [SerializeField] SpriteRenderer thisSpriteRenderer;
+    [SerializeField] private BoxCollider2D thisCollider;
+    [SerializeField] private BoxCollider2D feetCollider;
+    public Rigidbody2D thisRb = null;
     private CustomInputs input = null;
 
     [Header("MOVEMENT")]
@@ -25,13 +32,14 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float jumpingPower = 16f;
     bool isOnPlatform;
 
-    [SerializeField] SpriteRenderer thisSpriteRenderer;
-    [SerializeField] private BoxCollider2D thisCollider;
-    [SerializeField] private BoxCollider2D feetCollider;
-    public Rigidbody2D thisRb = null;
+    [Header("DOORS")]
+    private List<int> keyIDs = new List<int>();
+    private Door thisDoor;
 
-    private new void Awake()
+    protected override void Awake()
     {
+        //base.Awake();
+
         SetPosition(inicialPos);
         thisRb = GetComponent<Rigidbody2D>();
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -148,9 +156,11 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
+        Debug.Log("onplat: " + isOnPlatform);
         if (isOnPlatform)
         {
             feetCollider.enabled = false;
+            Debug.Log("enabled: " + feetCollider.enabled);
             StartCoroutine(EnableFeet());
         }
     }
@@ -217,6 +227,27 @@ public class PlayerController : Singleton<PlayerController>
 
     #endregion
 
+    #region Interagir
+
+    private void EntrarPorta(InputAction.CallbackContext context)
+    {
+        if (thisDoor.GetIsLocked())
+        {
+            foreach(int key in keyIDs)
+            {
+                if(key == thisDoor.GetDoorID())
+                {
+                    thisDoor.GoScene();
+                }
+            }
+        }
+        else
+        {
+            thisDoor.GoScene();
+        }
+    }
+
+    #endregion
 
 
     #region SET
@@ -237,6 +268,29 @@ public class PlayerController : Singleton<PlayerController>
     {
         isOnPlatform = state;
     }
+
+    #endregion
+
+    #region Collision
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            thisDoor = collision.gameObject.GetComponent<Door>();
+            input.Player.Interagir.performed += EntrarPorta;
+        }   
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            input.Player.Interagir.performed -= EntrarPorta;
+            thisDoor = null;
+        }
+    }
+
 
     #endregion
 }
