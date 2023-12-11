@@ -82,7 +82,14 @@ MonoBehaviour:
   musicGroup: {fileID: -1619627458629135479, guid: 2a63051ed045f584bb5046935461c719, type: 2}
   sfxGroup: {fileID: 967142615168617258, guid: 2a63051ed045f584bb5046935461c719, type: 2}
   musics: []
-  sfx: []
+  sfx:
+  - {fileID: 11400000, guid: d2a685ef85d990b479eeb18b29002331, type: 2}
+  - {fileID: 11400000, guid: 916c1f9bd2f083d46926bdd8d122141c, type: 2}
+  - {fileID: 11400000, guid: 35ea9cb08b9dd5649a5bb58dd31022a2, type: 2}
+  - {fileID: 11400000, guid: 1b51c450e1fdf02488b5549843b8ad2b, type: 2}
+  - {fileID: 11400000, guid: 6b9dfb02cc83ab34e8ee8b948aaae204, type: 2}
+  - {fileID: 11400000, guid: 24abc472d692aa941a5cec569ca55ea7, type: 2}
+  - {fileID: 11400000, guid: b8bb0549d4ae63a4f95880c2a85d9626, type: 2}
 --- !u!1 &8642329945056886990
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,3 +179,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarPrefab: {fileID: 1908904313869642321, guid: 97c92c1dd6419bd44a35b72b3fa88692, type: 3}
+  HealthBarCanvas: {fileID: 0}
+  KeyPrefab: {fileID: 4652348908007178585, guid: 63f5e6247f3ec3d429b10c273e253026, type: 3}
