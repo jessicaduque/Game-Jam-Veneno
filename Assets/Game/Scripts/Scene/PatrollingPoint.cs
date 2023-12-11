@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PatrollingPoint : MonoBehaviour
 {
+    private SpriteRenderer thisSpriteRenderer;
     private GameObject guard = null;
+
+    private void OnValidate()
+    {
+        if(thisSpriteRenderer == null)
+        {
+            thisSpriteRenderer = GetComponent<SpriteRenderer>();
+        }
+    }
 
     public GameObject GetGuard()
     {
@@ -14,5 +23,10 @@ public class PatrollingPoint : MonoBehaviour
     public void SetGuard(GameObject guard)
     {
         this.guard = guard;
+    }
+
+    public bool IsVisible()
+    {
+        return thisSpriteRenderer.isVisible;
     }
 }

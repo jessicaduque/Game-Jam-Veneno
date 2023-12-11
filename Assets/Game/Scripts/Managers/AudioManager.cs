@@ -13,8 +13,8 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioMixerGroup sfxGroup;
 
     [Header("Sounds")]
-    [SerializeField] private List<Sound> musics = new List<Sound>();
-    [SerializeField] private List<Sound> sfx = new List<Sound>();
+    [SerializeField] private List<SoundDetails> musics = new List<SoundDetails>();
+    [SerializeField] private List<SoundDetails> sfx = new List<SoundDetails>();
 
     private AudioSource _musicSource1;
     private AudioSource _musicSource2;
@@ -80,7 +80,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySfx(string soundName)
     {
-        Sound sound = GetSFX(soundName);
+        SoundDetails sound = GetSFX(soundName);
 
         if (sound != null)
         {
@@ -109,7 +109,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayMusic(string soundName)
     {
-        Sound sound = GetMusic(soundName);
+        SoundDetails sound = GetMusic(soundName);
 
         if (sound != null)
         {
@@ -121,7 +121,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayMusicCheckSame(string soundName)
     {
-        Sound sound = GetMusic(soundName);
+        SoundDetails sound = GetMusic(soundName);
 
         if (sound != null)
         {
@@ -149,7 +149,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void FadeInMusic(string soundName, float targetVolume = 1f, float duration = 0.45f)
     {
-        Sound sound = GetMusic(soundName);
+        SoundDetails sound = GetMusic(soundName);
         if (sound != null)
         {
             AudioSource currentMusicSource = GetCurretAudioSource();
@@ -164,7 +164,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void FadeOutMusic(string soundName, float targetVolume = 0f, float duration = 0.45f, bool stopTheEnd = true)
     {
-        Sound sound = GetMusic(soundName);
+        SoundDetails sound = GetMusic(soundName);
         if (sound != null)
         {
             AudioSource currentMusicSource = _musicSource1IsPlaying ? _musicSource1 : _musicSource2;
@@ -174,7 +174,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlayCrossFade(string soundName, float targetVol = 1, float duration = 0.5f)
     {
-        Sound sound = GetMusic(soundName);
+        SoundDetails sound = GetMusic(soundName);
 
         if (sound != null)
         {
@@ -246,7 +246,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private void SetupCurrentMusicSource(AudioSource currentMusicSource, Sound sound)
+    private void SetupCurrentMusicSource(AudioSource currentMusicSource, SoundDetails sound)
     {
         currentMusicSource.clip = sound.clip;
         currentMusicSource.volume = sound.volume;
@@ -289,9 +289,9 @@ public class AudioManager : Singleton<AudioManager>
 
         return currentMusicSource;
     }
-    private Sound GetMusic(string soundName)
+    private SoundDetails GetMusic(string soundName)
     {
-        Sound sound = musics.Find(music => music.soundName == soundName);
+        SoundDetails sound = musics.Find(music => music.soundName == soundName);
 
         if (sound == null)
         {
@@ -301,9 +301,9 @@ public class AudioManager : Singleton<AudioManager>
 
         return sound;
     }
-    private Sound GetSFX(string soundName)
+    private SoundDetails GetSFX(string soundName)
     {
-        Sound sound = sfx.Find(music => music.soundName == soundName);
+        SoundDetails sound = sfx.Find(music => music.soundName == soundName);
 
         if (sound == null)
         {

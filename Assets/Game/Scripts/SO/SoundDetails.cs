@@ -1,6 +1,6 @@
 using UnityEngine;
 [CreateAssetMenu(fileName = "Sound", menuName = "Audio Manager/Sound")]
-public class Sound : ScriptableObject
+public class SoundDetails : ScriptableObject
 {
     public string soundName;
     public AudioClip clip;

@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils.Singleton;
 
-public class GameController : MonoBehaviour
+public class GameController : Singleton<GameController>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("HEALTH")]
+    [SerializeField] public GameObject HealthBarPrefab;
+    [SerializeField] public Canvas HealthBarCanvas;
 
-    // Update is called once per frame
-    void Update()
+    [Header("KEYS")]
+    [SerializeField] public GameObject KeyPrefab;
+
+    private new void Awake()
     {
         
     }

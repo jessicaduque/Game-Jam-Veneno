@@ -61,7 +61,10 @@ public class Door : MonoBehaviour
     {
         return doorID;
     }
-
+    public string GetDoorSceneName()
+    {
+        return sceneName;
+    }
 
     #endregion
 }

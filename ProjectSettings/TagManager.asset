@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Enemy
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - Feet
   - EnemyAttack
-  - 
+  - Keys
   - 
   - 
   - 
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 143746475
+    locked: 0
+  - name: Objetos
+    uniqueID: 1625414057
     locked: 0

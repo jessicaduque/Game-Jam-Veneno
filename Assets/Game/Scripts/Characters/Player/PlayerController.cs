@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using Utils.Singleton;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -36,18 +37,25 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float jumpingPower = 16f;
     bool isOnPlatform;
 
+    [Header("ATTACK")]
+    private bool isAttacking;
+    private bool isAiming;
+
     [Header("DOORS")]
     private List<int> keyIDs = new List<int>();
     private Door thisDoor;
+    private int lastDoorID;
 
     protected override void Awake()
     {
-        //base.Awake();
+        base.Awake();
 
-        SetPosition(inicialPos);
+        transform.position = inicialPos;
         thisRb = GetComponent<Rigidbody2D>();
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
         input = new CustomInputs();
+
+        SceneManager.sceneLoaded += SetPosition;
     }
 
     private void OnEnable()
@@ -215,9 +223,9 @@ public class PlayerController : Singleton<PlayerController>
 
     #endregion
 
-    #region Dano
+    #region Damage
 
-    public void LevarDano(float dano)
+    public void TakeDamage(float dano)
     {
         hp -= dano;
 
@@ -228,11 +236,16 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    public void Death()
+    {
+        Time.timeScale = 0;
+    }
+
     #endregion
 
-    #region Interagir
+    #region Interaction
 
-    private void EntrarPorta(InputAction.CallbackContext context)
+    private void EnterDoor(InputAction.CallbackContext context)
     {
         if (thisDoor.GetIsLocked())
         {
@@ -240,9 +253,19 @@ public class PlayerController : Singleton<PlayerController>
             {
                 if(key == thisDoor.GetDoorID())
                 {
+                    if(thisDoor.GetDoorSceneName() == "DialogoFinal")
+                    {
+                        SceneManager.sceneLoaded -= SetPosition;
+                    }
+                    else
+                    {
+                        lastDoorID = thisDoor.GetDoorID();
+                    }
                     thisDoor.GoScene();
                 }
             }
+            // Tocar som de porta trancada
+            Debug.Log("Sem chave para essa porta.");
         }
         else
         {
@@ -252,12 +275,39 @@ public class PlayerController : Singleton<PlayerController>
 
     #endregion
 
+    #region PUBLIC INFO
+
+    public bool HasKey(int id)
+    {
+        foreach(int k in keyIDs)
+        {
+            if(id == k)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    #endregion
 
     #region SET
 
-    private void SetPosition(Vector2 pos)
+    private void SetPosition(Scene scene, LoadSceneMode mode)
     {
-        transform.position = pos;
+        foreach(Door d in FindObjectsOfType<Door>())
+        {
+            if(d.GetDoorID() == lastDoorID)
+            {
+                transform.position = d.gameObject.transform.position;
+            }
+        }
+    }
+
+    public void SetInitialPosition(Vector2 pos)
+    {
+        inicialPos = pos;
     }
 
     public void SetJump()
@@ -283,15 +333,20 @@ public class PlayerController : Singleton<PlayerController>
             posYFinal = transform.position.y;
             if(posYSaida - posYFinal > damageDistance)
             {
-                LevarDano((int)((posYSaida - posYFinal) / 10));
+                TakeDamage((int)((posYSaida - posYFinal) / 10));
             }
         }
 
         if (collision.CompareTag("Respawn"))
         {
             thisDoor = collision.gameObject.GetComponent<Door>();
-            input.Player.Interagir.performed += EntrarPorta;
-        }   
+            input.Player.Interagir.performed += EnterDoor;
+        }
+
+        if (collision.CompareTag("Key"))
+        {
+            keyIDs.Add(collision.GetComponent<Key>().GetKeyID());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -302,7 +357,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (collision.CompareTag("Respawn"))
         {
-            input.Player.Interagir.performed -= EntrarPorta;
+            input.Player.Interagir.performed -= EnterDoor;
             thisDoor = null;
         }
     }

@@ -32,10 +32,10 @@ namespace Utils.Singleton
                 _instance = this as T;
                 DontDestroyOnLoad(this.gameObject);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+            //else
+            //{
+            //    Destroy(gameObject);
+            //}
         }
     }
 }

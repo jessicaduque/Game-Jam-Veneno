@@ -2,17 +2,24 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Guard : MonoBehaviour
 {
-    [SerializeField] private float hp = 6;
+    [Header("INICIAL STATS")]
+    [SerializeField] private float hpMax = 6;
+    private float hp;
+
+    [Header("COMPONENTS")]
     [SerializeField] private BoxCollider2D thisCollider;
+    private GameObject HealthBar;
+    private Image HealthBarFill;
 
-    [Header("Key")]
+    [Header("KEY")]
     [SerializeField] private bool hasKey;
-    [SerializeField] private int keyID;
+    [SerializeField] private KeyDetails keyDetails;
 
-    [Header("Patrolling")]
+    [Header("PATROLLING")]
     [SerializeField] private Transform[] PatrollingPoints;
     private PatrollingPoint[] PatrollingPointsScripts;
     private float[] patrollingTimes = {0.5f, 0.6f, 0.7f};
@@ -25,11 +32,16 @@ public class Guard : MonoBehaviour
     private bool changeSide;
     private float newPosX = 0;
 
+    [Header("SPRITE")]
     [SerializeField] private SpriteRenderer thisSpriteRenderer;
-    
+    private bool isVisible;
+    private bool resetPos;
+    private float topoSprite;
+
     private GameObject Player;
     private bool playerIsClose;
     private PlayerController _playerController => PlayerController.I;
+    private GameController _gameController => GameController.I;
     private void OnValidate()
     {
         if(thisCollider == null)
@@ -44,6 +56,8 @@ public class Guard : MonoBehaviour
 
     private void Awake()
     {
+        hp = hpMax;
+        topoSprite = thisSpriteRenderer.bounds.size.y / 2;
         Player = _playerController.gameObject;
         indiceNextPatrollingPoint = Random.Range(0, PatrollingPoints.Length);
         nextPatrollingPoint = PatrollingPoints[indiceNextPatrollingPoint];
@@ -64,6 +78,18 @@ public class Guard : MonoBehaviour
     private void Update()
     {
         CheckPlayerClose();
+        if (!isVisible && thisSpriteRenderer.isVisible)
+        {
+            HealthBar = Instantiate(_gameController.HealthBarPrefab, _gameController.HealthBarCanvas.transform, worldPositionStays: false);
+            HealthBar.GetComponent<HealthBar>().SetEnemy(gameObject, topoSprite);
+            HealthBarFill = HealthBar.GetComponentsInChildren<Image>()[0];
+            isVisible = true;
+        }
+        else if (isVisible && !thisSpriteRenderer.isVisible)
+        {
+            Destroy(HealthBar);
+            isVisible = false;
+        }
     }
 
     #region Movement
@@ -107,18 +133,23 @@ public class Guard : MonoBehaviour
     #endregion
 
     #region Dano
-    public void LevarDano(float dano)
+    public void TakeDamage(float dano)
     {
-        hp -= dano;
-
-        if(hp <= 0)
+        if (thisSpriteRenderer.isVisible)
         {
-            thisCollider.enabled = false;
-            //Trigger animação morte
+            hp -= dano;
+            HealthBarFill.fillAmount -= dano / hpMax;
+
+            if (hp <= 0)
+            {
+                DropKey();
+                thisCollider.enabled = false;
+                //Trigger animação morte
+            }
         }
     }
 
-    public void Morrer()
+    public void Death()
     {
         gameObject.SetActive(false);
     }
@@ -135,7 +166,7 @@ public class Guard : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
-        else if(distanceX < 8f)
+        else if (distanceX < 8f)
         {
             StopCoroutine(Attack());
             playerIsClose = true;
@@ -151,6 +182,7 @@ public class Guard : MonoBehaviour
             {
                 changeSide = false;
             }
+            resetPos = false;
         }
         else
         {
@@ -160,7 +192,15 @@ public class Guard : MonoBehaviour
                 MoveNextPatrollingPoint();
                 playerIsClose = false;
             }
-            
+
+            if (distanceX >= 50f && !resetPos)
+            {
+                movementSequence.Kill();
+                transform.position = new Vector2(PatrollingPoints[0].position.x, PatrollingPoints[0].position.y + 0.2f);
+                MovementDone();
+                resetPos = true;
+            }
+
         }
     }
 
@@ -170,16 +210,47 @@ public class Guard : MonoBehaviour
         
     }
 
+    #endregion
+
+    #region Key
+
+    private void DropKey()
+    {
+        if(keyDetails != null)
+        {
+            if (!_playerController.HasKey(keyDetails.keyID))
+            {
+                float angularChangeInDegrees;
+                if(Player.transform.position.x > transform.position.x)
+                {
+                    angularChangeInDegrees = -45;
+                }
+                else
+                {
+                    angularChangeInDegrees = 45;
+                }
+                GameObject key = Instantiate(_gameController.KeyPrefab, transform.position, Quaternion.identity);
+                var body = key.GetComponent<Rigidbody2D>();
+                var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * body.inertia;
+                body.AddTorque(impulse, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    #endregion
+
+    #region Collision
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")){
+        if (collision.CompareTag("Enemy"))
+        {
             float thisX = transform.position.x;
             if (collision.gameObject.transform.position.x > thisX && Player.transform.position.x > thisX)
             {
                 changeSide = true;
                 newPosX = 2;
             }
-            else if(collision.gameObject.transform.position.x < thisX && Player.transform.position.x < thisX)
+            else if (collision.gameObject.transform.position.x < thisX && Player.transform.position.x < thisX)
             {
                 changeSide = true;
                 newPosX = -2f;
@@ -191,5 +262,6 @@ public class Guard : MonoBehaviour
         }
     }
 
-    #endregion
+    #endregion 
+
 }
