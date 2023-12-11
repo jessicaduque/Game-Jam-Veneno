@@ -5,13 +5,14 @@ using UnityEngine;
 public class Floor : MonoBehaviour
 {
     protected bool activateStayCheck;
-
+    private float posY;
     private PlayerController _playerController => PlayerController.I;
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            posY = _playerController.gameObject.transform.position.y;
             if (_playerController.thisRb.velocity.y == 0)
             {
                 _playerController.SetJump();
@@ -27,11 +28,14 @@ public class Floor : MonoBehaviour
     {
         if (activateStayCheck)
         {
-            Debug.Log(_playerController.thisRb.velocity.y);
-            if (_playerController.thisRb.velocity.y == 0)
+            if (Mathf.Abs(posY - _playerController.gameObject.transform.position.y) < 0.001f)
             {
                 _playerController.SetJump();
                 activateStayCheck = false;
+            }
+            else
+            {
+                posY = _playerController.gameObject.transform.position.y;
             }
         }
     }
