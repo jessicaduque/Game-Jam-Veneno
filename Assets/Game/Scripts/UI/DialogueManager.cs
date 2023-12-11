@@ -42,6 +42,7 @@ public class DialogueManager : Singleton<DialogueManager>
         numeroFala = 0;
         falaTexto.text = "";
         currentLanguage = (PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetInt("Language") : 1);
+        falasRodando = true;
     }
 
     void Update()
@@ -92,7 +93,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         string line = DialogueDetailsArray[numeroFala].dialogue[currentLanguage];
 
-        NomeFalante_Text.text = line;
+        NomeFalante_Text.text = speaker;
 
         LettersOneByOne(line);
 
