@@ -27,6 +27,7 @@ public class Floor : MonoBehaviour
     {
         if (activateStayCheck)
         {
+            Debug.Log(_playerController.thisRb.velocity.y);
             if (_playerController.thisRb.velocity.y == 0)
             {
                 _playerController.SetJump();

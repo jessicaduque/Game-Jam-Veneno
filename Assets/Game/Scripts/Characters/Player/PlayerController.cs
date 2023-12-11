@@ -17,6 +17,10 @@ public class PlayerController : Singleton<PlayerController>
     public Rigidbody2D thisRb = null;
     private CustomInputs input = null;
 
+    [Header("DAMAGE")]
+    [SerializeField] private float damageDistance = 10f;
+    private float posYSaida, posYFinal;
+
     [Header("MOVEMENT")]
     private float moveX = 0;
     private float moveXDash = 1;
@@ -60,7 +64,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void FixedUpdate()
     {
-        thisRb.velocity = new Vector2(moveX * moveSpeed * moveXDash, thisRb.velocity.y);
+        thisRb.velocity = new Vector2(moveX * moveXDash * moveSpeed, thisRb.velocity.y);
     }
 
 
@@ -132,6 +136,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (amountJumps > 0 && !jumped && canJump)
         {
+            posYSaida = transform.position.y;
             thisRb.velocity = new Vector2(thisRb.velocity.x, 0);
             thisRb.AddForce(Vector2.up * jumpingPower * 1, ForceMode2D.Impulse);
             amountJumps--;
@@ -156,11 +161,9 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("onplat: " + isOnPlatform);
         if (isOnPlatform)
         {
             feetCollider.enabled = false;
-            Debug.Log("enabled: " + feetCollider.enabled);
             StartCoroutine(EnableFeet());
         }
     }
@@ -275,7 +278,16 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Respawn"))
+        if (collision.CompareTag("Floor"))
+        {
+            posYFinal = transform.position.y;
+            if(posYSaida - posYFinal > damageDistance)
+            {
+                LevarDano((int)((posYSaida - posYFinal) / 10));
+            }
+        }
+
+        if (collision.CompareTag("Respawn"))
         {
             thisDoor = collision.gameObject.GetComponent<Door>();
             input.Player.Interagir.performed += EntrarPorta;
@@ -284,7 +296,11 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Respawn"))
+        if (collision.CompareTag("Floor")){
+            posYSaida = transform.position.y;
+        }
+
+        if (collision.CompareTag("Respawn"))
         {
             input.Player.Interagir.performed -= EntrarPorta;
             thisDoor = null;

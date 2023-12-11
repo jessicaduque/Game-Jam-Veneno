@@ -130,12 +130,13 @@ public class Guard : MonoBehaviour
     private void CheckPlayerClose()
     {
         Vector2 playerPos = Player.transform.position;
-        float distance = Vector2.Distance(transform.position, playerPos);
-        if(distance < 2f && !changeSide)
+        float distanceX = Mathf.Abs(transform.position.x - playerPos.x);
+        float distanceY = Mathf.Abs(transform.position.y - playerPos.y);
+        if (distanceY < 1 && distanceX < 2f && !changeSide)
         {
             StartCoroutine(Attack());
         }
-        else if(distance < 8f)
+        else if(distanceY < 1 && distanceX < 8f)
         {
             StopCoroutine(Attack());
             playerIsClose = true;
