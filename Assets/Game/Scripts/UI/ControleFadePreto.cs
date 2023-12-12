@@ -38,7 +38,7 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
 
     private IEnumerator WaitForLoad()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
         Utilities.FadeOutPanel(TelaPretaPanel, cg_TelaPreta, tempoFadePreto);
     }
 

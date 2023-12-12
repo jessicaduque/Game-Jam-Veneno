@@ -155,7 +155,8 @@ MonoBehaviour:
   masterMixer: {fileID: 24100000, guid: 2a63051ed045f584bb5046935461c719, type: 2}
   musicGroup: {fileID: -1619627458629135479, guid: 2a63051ed045f584bb5046935461c719, type: 2}
   sfxGroup: {fileID: 967142615168617258, guid: 2a63051ed045f584bb5046935461c719, type: 2}
-  musics: []
+  musics:
+  - {fileID: 11400000, guid: 3ade31345dff7e847a1229c6b48f02c1, type: 2}
   sfx:
   - {fileID: 11400000, guid: d2a685ef85d990b479eeb18b29002331, type: 2}
   - {fileID: 11400000, guid: 916c1f9bd2f083d46926bdd8d122141c, type: 2}

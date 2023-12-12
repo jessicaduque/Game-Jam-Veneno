@@ -286,6 +286,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasDialogo
       objectReference: {fileID: 0}
+    - target: {fileID: 4516085889420524762, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 516771674}
+    - target: {fileID: 4516085889420524762, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4516085889420524763, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -370,5 +378,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4516085889420524764, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
+      propertyPath: b_pular
+      value: 
+      objectReference: {fileID: 4516085888745841961}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
+--- !u!114 &4516085888745841961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8254583845713611337, guid: cb91a4b452c9d90408e578e20d37cbbc, type: 3}
+  m_PrefabInstance: {fileID: 4516085888745841960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

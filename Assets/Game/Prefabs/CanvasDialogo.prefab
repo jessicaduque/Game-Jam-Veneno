@@ -167,12 +167,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8431178401867890365}
-  m_Father: {fileID: 4516085889420524763}
+  m_Father: {fileID: 4516085888506910079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -50}
+  m_AnchoredPosition: {x: 84.400024, y: 619.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &8684833369511213197
@@ -288,7 +288,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4516085888506910079}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -503,10 +503,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5324113126068803560}
   - {fileID: 4516085887954367558}
   - {fileID: 4516085888855768599}
   m_Father: {fileID: 4516085889420524763}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07, y: 0.05}
   m_AnchorMax: {x: 0.93, y: 0.38}
@@ -669,7 +670,7 @@ RectTransform:
   m_Children:
   - {fileID: 4516085888270554324}
   m_Father: {fileID: 4516085888506910079}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -843,7 +844,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5324113126068803560}
   - {fileID: 4516085888506910079}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1290,6 +1290,7 @@ MonoBehaviour:
     - Berry
     speakerSprite: {fileID: 0}
   DialoguePanel: {fileID: 4516085888506910078}
+  cg_DialoguePanel: {fileID: 4516085888506910066}
   falaTexto: {fileID: 4516085887954367559}
   NomeFalante_Text: {fileID: 4516085889022072345}
   Falante_Image: {fileID: 4516085888540874882}

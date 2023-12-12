@@ -15,6 +15,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private int currentLanguage;
 
     [Header("DIALOGUE")]
+    [SerializeField] private Button b_pular;
     [SerializeField] private DialogueDetails[] DialogueDetailsArray;
     [SerializeField] private DialogueSpeaker[] DialogueSpeakerArray;
 
@@ -38,6 +39,7 @@ public class DialogueManager : Singleton<DialogueManager>
     // NENHUM AINDA
 
     private ControleFadePreto _controleFadePreto => ControleFadePreto.I;
+    private AudioManager audioManager => AudioManager.I;
     //private PausePanel _pausePanel => PausePanel.I;
 
     private void OnValidate()
@@ -50,6 +52,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private new void Awake()
     {
+        b_pular.onClick.AddListener(() => DialogueOver());
         numeroFala = 0;
         falaTexto.text = "";
         currentLanguage = (PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetInt("Language") : 1);
@@ -67,8 +70,9 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private IEnumerator ComecarFalas()
     {
-        yield return new WaitForSeconds(1.5f);
-        cg_DialoguePanel.DOFade(1, 0.6f).OnComplete(() => falasRodando = true);
+        yield return new WaitForSeconds(1.1f);
+        DialoguePanel.SetActive(true);
+        cg_DialoguePanel.DOFade(1, 0.8f).OnComplete(() => falasRodando = true);
         falasRodando = true;
     }
 
@@ -106,6 +110,10 @@ public class DialogueManager : Singleton<DialogueManager>
         if (speaker == null || speaker == "???")
         {
             Falante_Image.enabled = false;
+        }
+        if(speaker == "Berry")
+        {
+            audioManager.PlaySfx("BerryGrowl");
         }
         else
         {

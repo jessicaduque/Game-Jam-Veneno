@@ -111,5 +111,6 @@ public class MainScreen : Singleton<MainScreen>
     private void StartGame()
     {
         _controleFadePreto.FadeOutScene("DialogoInicial");
+        _audioManager.PlayMusic("PoisonWhite");
     }
 }

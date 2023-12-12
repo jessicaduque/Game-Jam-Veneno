@@ -25,10 +25,9 @@ namespace Utils.Singleton
 
         protected virtual void Awake()
         {
-            transform.SetParent(null, true);
-
             if (_instance == null)
             {
+                transform.SetParent(null, true);
                 _instance = this as T;
                 DontDestroyOnLoad(this.gameObject);
             }
