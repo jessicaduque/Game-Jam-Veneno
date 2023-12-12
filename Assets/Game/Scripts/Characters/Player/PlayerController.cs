@@ -266,6 +266,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!actionHappening)
         {
+            Debug.Log(dano);
             thisAnimator.SetTrigger("Hit");
             hp -= dano;
 
@@ -345,6 +346,7 @@ public class PlayerController : MonoBehaviour
             moveX = 1;
         }
         actionHappening = false;
+        thisAnimator.ResetTrigger("Bite");
     }
 
     private void SetPosition(Scene scene, LoadSceneMode mode)

@@ -19,10 +19,6 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
         Time.timeScale = 1;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnValidate()
-    {
         cg_TelaPreta = TelaPretaPanel.GetComponent<CanvasGroup>();
     }
 
