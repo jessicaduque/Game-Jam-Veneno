@@ -942,6 +942,10 @@ MonoBehaviour:
     - ???
     - ???
     speakerSprite: {fileID: 0}
+  - speakers:
+    - Berry
+    - Berry
+    speakerSprite: {fileID: 0}
   DialoguePanel: {fileID: 4516085888506910078}
   falaTexto: {fileID: 4516085887954367559}
   NomeFalante_Text: {fileID: 4516085889022072345}
