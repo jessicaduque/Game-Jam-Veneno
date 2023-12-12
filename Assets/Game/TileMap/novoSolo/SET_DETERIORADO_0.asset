@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SET_DETERIORADO_0
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 1385722129, guid: 0bb573009e377844c820c243238f56ae, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4433962, g: 0.2990833, b: 0.2990833, a: 1}
   m_Transform:
     e00: 1
     e01: 0
