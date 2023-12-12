@@ -4,12 +4,10 @@ public class AttachChildOnTouch : MonoBehaviour
 {
     [SerializeField] private GameObject objectToAttach;
 
-    private void OnValidate()
+
+    private void Awake()
     {
-        if(objectToAttach == null)
-        {
-            objectToAttach = PlayerController.I.gameObject;
-        }
+        objectToAttach = GameObject.FindGameObjectWithTag("Player");
     }
 
     public GameObject GetObjectToAttach()

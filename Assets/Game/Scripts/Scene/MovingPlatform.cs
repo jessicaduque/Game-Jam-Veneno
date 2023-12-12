@@ -10,8 +10,10 @@ public class MovingPlatform : Platform
     [SerializeField] private float waitTime = 0.5f;
     [SerializeField] private Transform[] movementPoints;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         transform.position = movementPoints[1].position;
         Sequence seq = DOTween.Sequence();
         foreach (Transform t in movementPoints)

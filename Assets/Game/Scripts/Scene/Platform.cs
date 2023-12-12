@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Platform : Floor
 {
-    [SerializeField]
-    private PlayerController _playerController => PlayerController.I;
     [SerializeField] private GameObject Player;
 
-    private void OnValidate()
-    {
-        if(Player == null)
-        {
-            Player = _playerController.gameObject;
-        }
-    }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Player = _playerController.gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

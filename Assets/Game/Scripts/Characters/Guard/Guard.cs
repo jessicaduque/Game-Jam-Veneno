@@ -40,7 +40,7 @@ public class Guard : MonoBehaviour
 
     private GameObject Player;
     private bool playerIsClose;
-    private PlayerController _playerController => PlayerController.I;
+    private PlayerController _playerController;
     private GameController _gameController => GameController.I;
     private void OnValidate()
     {
@@ -56,6 +56,7 @@ public class Guard : MonoBehaviour
 
     private void Awake()
     {
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         hp = hpMax;
         topoSprite = thisSpriteRenderer.bounds.size.y / 2;
         Player = _playerController.gameObject;

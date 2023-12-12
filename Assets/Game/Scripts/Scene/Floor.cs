@@ -6,7 +6,12 @@ public class Floor : MonoBehaviour
 {
     protected bool activateStayCheck;
     private float posY;
-    private PlayerController _playerController => PlayerController.I;
+    protected PlayerController _playerController;
+
+    protected virtual void Awake()
+    {
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {

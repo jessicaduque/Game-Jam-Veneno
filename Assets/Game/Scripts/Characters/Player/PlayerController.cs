@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -46,9 +47,9 @@ public class PlayerController : MonoBehaviour
     private Door thisDoor;
     private int lastDoorID;
 
-    protected override void Awake()
+    private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
         thisRb = GetComponent<Rigidbody2D>();
         transform.position = inicialPos;
         thisSpriteRenderer = GetComponent<SpriteRenderer>();

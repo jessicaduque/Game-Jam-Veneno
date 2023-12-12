@@ -5,7 +5,12 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private float dano;
-    private PlayerController _playerController => PlayerController.I;
+    private PlayerController _playerController;
+
+    private void Awake()
+    {
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
