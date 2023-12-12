@@ -4,7 +4,7 @@ namespace Utils.Singleton
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        private static T _instance;
+        protected static T _instance;
         public static T I
         {
             get
@@ -31,10 +31,10 @@ namespace Utils.Singleton
                 _instance = this as T;
                 DontDestroyOnLoad(this.gameObject);
             }
-            //else
-            //{
-            //    Destroy(gameObject);
-            //}
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

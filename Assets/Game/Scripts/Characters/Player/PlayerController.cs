@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : MonoBehaviour
 {
     [Header("INICIAL STATS")]
     [SerializeField] private float hp;
@@ -49,8 +48,7 @@ public class PlayerController : Singleton<PlayerController>
 
     protected override void Awake()
     {
-        base.Awake();
-
+        DontDestroyOnLoad(this.gameObject);
         thisRb = GetComponent<Rigidbody2D>();
         transform.position = inicialPos;
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -79,7 +77,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         else
         {
-            thisRb.velocity = new Vector2(moveXDash * moveSpeed, 0);
+            thisRb.velocity = new Vector2(moveXDash * moveSpeed, thisRb.velocity.y);
         }
     }
 
@@ -96,6 +94,7 @@ public class PlayerController : Singleton<PlayerController>
             input.Player.Jump.performed += JumpPerformed;
             input.Player.Jump.canceled += JumpCancelled;
             input.Player.Dash.performed += OnDashPerformed; // Fundamental ser adicionada após movement devido ao Dash
+            input.Player.AtaqueMorder.performed += OnAttackPerformed;
         }
         else
         {
@@ -105,6 +104,7 @@ public class PlayerController : Singleton<PlayerController>
             input.Player.Jump.performed -= JumpPerformed;
             input.Player.Jump.canceled -= JumpCancelled;
             input.Player.Dash.performed -= OnDashPerformed;
+            input.Player.AtaqueMorder.performed -= OnAttackPerformed;
         }
         
     }
@@ -231,6 +231,7 @@ public class PlayerController : Singleton<PlayerController>
             else if(dashPress == 2)
             {
                 actionHappening = true;
+                thisRb.velocity = Vector2.zero;
                 thisAnimator.SetTrigger("Dash");
                 moveXDash = (facingRight ? 4f : -4f);
                 time = 1;
@@ -240,6 +241,20 @@ public class PlayerController : Singleton<PlayerController>
         }
         dashPress = 0;
     }
+    #endregion
+
+    #region Attack
+    private void OnAttackPerformed(InputAction.CallbackContext context)
+    {
+        if (!actionHappening)
+        {
+            thisAnimator.SetTrigger("Bite");
+            thisRb.AddForce(Vector2.up * jumpingPower / 2 * 1, ForceMode2D.Impulse);
+            moveXDash = (_facingRight ? 1f : -1f);
+            actionHappening = true;
+        }
+    }
+
     #endregion
 
     #endregion

@@ -161,7 +161,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""95bd316c-505e-48d7-b2c5-3b550ba44b3a"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -173,6 +173,17 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2b1912dd-61de-4a0f-8108-83ae4d4c319c"",
                     ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79c6360c-e868-4825-8ad2-c5d0fc881be6"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
