@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Utils.Singleton;
 using TMPro;
+using System.Collections;
+using DG.Tweening;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -24,6 +26,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     [Header("UI")]
     [SerializeField] private GameObject DialoguePanel;
+    [SerializeField] private CanvasGroup cg_DialoguePanel;
     [SerializeField] private TextMeshProUGUI falaTexto;
     [SerializeField] private TextMeshProUGUI NomeFalante_Text;
     [SerializeField] private Image Falante_Image;
@@ -37,17 +40,36 @@ public class DialogueManager : Singleton<DialogueManager>
     private ControleFadePreto _controleFadePreto => ControleFadePreto.I;
     //private PausePanel _pausePanel => PausePanel.I;
 
+    private void OnValidate()
+    {
+        if(cg_DialoguePanel == null)
+        {
+            cg_DialoguePanel = DialoguePanel.GetComponent<CanvasGroup>();
+        }
+    }
+
     private new void Awake()
     {
         numeroFala = 0;
         falaTexto.text = "";
         currentLanguage = (PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetInt("Language") : 1);
-        falasRodando = true;
+
+        DialoguePanel.SetActive(false);
+        cg_DialoguePanel.alpha = 0;
+
+        StartCoroutine(ComecarFalas());
     }
 
     void Update()
     {
         DialogueControl();
+    }
+
+    private IEnumerator ComecarFalas()
+    {
+        yield return new WaitForSeconds(1.5f);
+        cg_DialoguePanel.DOFade(1, 0.6f).OnComplete(() => falasRodando = true);
+        falasRodando = true;
     }
 
     void DialogueControl()

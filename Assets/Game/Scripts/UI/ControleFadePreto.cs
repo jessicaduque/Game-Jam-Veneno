@@ -2,6 +2,7 @@ using Utils.Singleton;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ControleFadePreto : Singleton<ControleFadePreto>
 {
@@ -32,6 +33,12 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
 
     public void FadeInSceneStart()
     {
+        StartCoroutine(WaitForLoad());
+    }
+
+    private IEnumerator WaitForLoad()
+    {
+        yield return new WaitForSeconds(1.2f);
         Utilities.FadeOutPanel(TelaPretaPanel, cg_TelaPreta, tempoFadePreto);
     }
 
@@ -39,6 +46,16 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
     {
         TelaPretaPanel.SetActive(true);
         cg_TelaPreta.DOFade(1, tempoFadePreto).OnComplete(() => SceneManager.LoadScene(nomeScene)).SetUpdate(true);
+    }
+
+    public void FadeInOutPanel(GameObject Panel, bool state)
+    {
+        TelaPretaPanel.SetActive(true);
+        cg_TelaPreta.DOFade(1, tempoFadePreto).OnComplete(() =>
+        {
+            Panel.SetActive(state);
+            cg_TelaPreta.DOFade(0, tempoFadePreto).OnComplete(() => TelaPretaPanel.SetActive(false));
+        });
     }
 
     private void OnDestroy()

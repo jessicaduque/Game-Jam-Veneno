@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/TEMPORARIO/PreparandoCena.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Game/Scenes/CenasPermanentes/TelaInicial.unity
+    guid: f63a2f0b87e12e943a6a25a843af33f0
+  - enabled: 1
+    path: Assets/Game/Scenes/CenasPermanentes/DialogoInicial.unity
+    guid: a2111ac5c7f49fd49a87cac8bdbc14d9
+  - enabled: 1
+    path: Assets/Game/Scenes/CenasPermanentes/Castelo1.unity
+    guid: e1f09c49b9840f24eb7bca4f02926da3
+  - enabled: 1
+    path: Assets/Game/Scenes/CenasPermanentes/Castelo2.unity
+    guid: 36f94ceb1ca5b1140a3333d7ecf99508
+  - enabled: 1
+    path: Assets/Game/Scenes/CenasPermanentes/Castelo3.unity
+    guid: 3cae7faa20583cf408254ce4257b502a
+  - enabled: 1
+    path: Assets/Game/Scenes/CenasPermanentes/DialogoFinal.unity
+    guid: 42b14effaf09cdc43a2cd7ead58e9d75
   m_configObjects: {}

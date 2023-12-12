@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BerryGrowl
   m_EditorClassIdentifier: 
   soundName: BerryGrowl
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 26ed8dbc0590176439462d08be824436, type: 3}
   loop: 0
   volume: 1
   pitch: 1

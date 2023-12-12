@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoorKnock
   m_EditorClassIdentifier: 
   soundName: DoorKnock
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 8c23707f6972b9a4fae687d645c35e90, type: 3}
   loop: 0
   volume: 1
   pitch: 1

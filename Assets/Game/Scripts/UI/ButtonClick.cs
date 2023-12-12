@@ -33,7 +33,7 @@ public class ButtonClick : MonoBehaviour
 
     private void MakeSound()
     {
-        //_audioManager.PlaySfx("ButtonClick"); // Pegar o som de botão primeiro
+        _audioManager.PlaySfx("ButtonClick"); 
         thisButton.enabled = false;
         StartCoroutine(Reset());
     }

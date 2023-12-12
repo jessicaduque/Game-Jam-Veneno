@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BiteNoise
   m_EditorClassIdentifier: 
   soundName: BiteNoise
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 2a2e3e118cf577346b2b14f1e61ef9d2, type: 3}
   loop: 0
   volume: 1
   pitch: 1

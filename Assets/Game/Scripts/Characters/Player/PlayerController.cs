@@ -4,6 +4,7 @@ using Utils.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -15,6 +16,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] SpriteRenderer thisSpriteRenderer;
     [SerializeField] private BoxCollider2D thisCollider;
     [SerializeField] private BoxCollider2D feetCollider;
+    [SerializeField] private Animator thisAnimator;
     public Rigidbody2D thisRb = null;
     private CustomInputs input = null;
 
@@ -37,9 +39,8 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float jumpingPower = 16f;
     bool isOnPlatform;
 
-    [Header("ATTACK")]
-    private bool isAttacking;
-    private bool isAiming;
+    [Header("ANIMATION")]
+    private bool actionHappening;
 
     [Header("DOORS")]
     private List<int> keyIDs = new List<int>();
@@ -50,8 +51,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         base.Awake();
 
-        transform.position = inicialPos;
         thisRb = GetComponent<Rigidbody2D>();
+        transform.position = inicialPos;
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
         input = new CustomInputs();
 
@@ -72,7 +73,14 @@ public class PlayerController : Singleton<PlayerController>
 
     private void FixedUpdate()
     {
-        thisRb.velocity = new Vector2(moveX * moveXDash * moveSpeed, thisRb.velocity.y);
+        if (!actionHappening)
+        {
+            thisRb.velocity = new Vector2(moveX * moveXDash * moveSpeed, thisRb.velocity.y);
+        }
+        else
+        {
+            thisRb.velocity = new Vector2(moveXDash * moveSpeed, 0);
+        }
     }
 
 
@@ -107,20 +115,23 @@ public class PlayerController : Singleton<PlayerController>
     {
         moveX = value.ReadValue<Vector2>().x;
 
-        if(moveX > 0 && !_facingRight)
+        if (moveX > 0 && !_facingRight)
         {
             thisSpriteRenderer.flipX = false;
             _facingRight = true;
         }
-        else if(moveX < 0 && _facingRight)
+        else if (moveX < 0 && _facingRight)
         {
             thisSpriteRenderer.flipX = true;
             _facingRight = false;
         }
+        thisAnimator.SetBool("Running", true);
+        
     }
 
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
+        thisAnimator.SetBool("Running", false);
         moveX = 0;
         moveXDash = 1;
     }
@@ -135,14 +146,14 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(amountJumps == 2)
         {
-            canJump = false;
+            canJump = true;
             canCheckCancelled = false;
         }
     }
 
     private void JumpPerformed(InputAction.CallbackContext context)
     {
-        if (amountJumps > 0 && !jumped && canJump)
+        if (amountJumps > 0 && !jumped && canJump && !actionHappening)
         {
             posYSaida = transform.position.y;
             thisRb.velocity = new Vector2(thisRb.velocity.x, 0);
@@ -169,17 +180,23 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
-        if (isOnPlatform)
+        if (isOnPlatform && !actionHappening)
         {
-            feetCollider.enabled = false;
             StartCoroutine(EnableFeet());
+            feetCollider.enabled = false;
         }
     }
 
     private IEnumerator EnableFeet()
     {
+        float time = 0;
         while (isOnPlatform)
         {
+            time += Time.deltaTime;
+            if(time > 0.09f)
+            {
+                isOnPlatform = false;
+            }
             yield return null;
         }
         feetCollider.enabled = true;
@@ -192,7 +209,9 @@ public class PlayerController : Singleton<PlayerController>
     private void OnDashPerformed(InputAction.CallbackContext context)
     {
         dashPress++;
-        if(dashPress == 1)
+        if (dashPress > 2)
+            dashPress = 0;
+        if(dashPress == 1 && !actionHappening)
         {
             StopCoroutine(DoDashTime());
             StartCoroutine(DoDashTime());
@@ -211,7 +230,9 @@ public class PlayerController : Singleton<PlayerController>
             }
             else if(dashPress == 2)
             {
-                moveXDash = 1.6f;
+                actionHappening = true;
+                thisAnimator.SetTrigger("Dash");
+                moveXDash = (facingRight ? 4f : -4f);
                 time = 1;
             }
             time += Time.deltaTime;
@@ -227,12 +248,16 @@ public class PlayerController : Singleton<PlayerController>
 
     public void TakeDamage(float dano)
     {
-        hp -= dano;
-
-        if(hp <= 0)
+        if (!actionHappening)
         {
-            thisCollider.enabled = false;
-            // Trigger morte
+            thisAnimator.SetTrigger("Hit");
+            hp -= dano;
+
+            if (hp <= 0)
+            {
+                thisCollider.enabled = false;
+                // Trigger morte
+            }
         }
     }
 
@@ -293,6 +318,18 @@ public class PlayerController : Singleton<PlayerController>
     #endregion
 
     #region SET
+
+    public void SetActionDone()
+    {
+        moveXDash = 1;
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+            moveX = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
+            moveX = 1;
+        }
+        actionHappening = false;
+    }
 
     private void SetPosition(Scene scene, LoadSceneMode mode)
     {

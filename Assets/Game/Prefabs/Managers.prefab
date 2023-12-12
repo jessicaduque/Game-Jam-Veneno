@@ -29,7 +29,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8642329945389933338}
-  - {fileID: 8642329945056886985}
   - {fileID: 8642329944682884967}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,7 +63,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8642329944112572482}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8642329944682884966
 MonoBehaviour:
@@ -90,50 +89,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b9dfb02cc83ab34e8ee8b948aaae204, type: 2}
   - {fileID: 11400000, guid: 24abc472d692aa941a5cec569ca55ea7, type: 2}
   - {fileID: 11400000, guid: b8bb0549d4ae63a4f95880c2a85d9626, type: 2}
---- !u!1 &8642329945056886990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8642329945056886985}
-  - component: {fileID: 8642329945056886984}
-  m_Layer: 0
-  m_Name: UIController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8642329945056886985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8642329945056886990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8642329944112572482}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8642329945056886984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8642329945056886990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26432e0ca3aa3d740b1953ca9fcf98f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8642329945389933339
 GameObject:
   m_ObjectHideFlags: 0

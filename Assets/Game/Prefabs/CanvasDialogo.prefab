@@ -292,8 +292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -60, y: -80}
+  m_AnchoredPosition: {x: -185, y: 0}
+  m_SizeDelta: {x: -430, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4516085887954367576
 CanvasRenderer:
@@ -422,15 +422,17 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5327547682892927637}
+  - {fileID: 1435605474601903375}
   - {fileID: 4516085888540874881}
   - {fileID: 4516085889022072344}
   m_Father: {fileID: 4516085888855768599}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 220, y: 70}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4516085888270554326
 CanvasRenderer:
@@ -592,7 +594,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4516085888270554324}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -669,11 +671,11 @@ RectTransform:
   m_Father: {fileID: 4516085888506910079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &4516085889022072327
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +707,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4516085888270554324}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -924,16 +926,357 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ba269ea1735b24d84770e2e5058bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueDetailsArray: []
+  DialogueDetailsArray:
+  - dialogue:
+    - Who is it-
+    - "Quem \xE9-"
+    speakerID: 3
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - ?!
+    - ?!
+    speakerID: 3
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Snow White\u2026 w-why are you here?"
+    - "Branca de Neve\u2026 p-por que est\xE1 aqui?"
+    speakerID: 3
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Stepmother\u2026 no, Grimhilde. "
+    - "Madrasta\u2026 n\xE3o, Grimhilde."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - I need your help.
+    - Preciso da sua ajuda.
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Have you finally come to finish me off? Leave me alone! I want to stay away
+      from you, little girl!
+    - "Finalmente veio me matar de vez? Me deixe em paz! Quero ficar longe de voc\xEA,
+      garotinha!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Don\u2019t be like that\u2026 you\u2019re not the one I wanna kill."
+    - "N\xE3o seja assim\u2026 n\xE3o \xE9 voc\xEA que quero matar."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "\u2026"
+    - "\u2026"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Come in.
+    - Entre.
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "How did you know I\u2019m alive?"
+    - Como soube que estou viva?
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I heard it from the birds. Didn\u2019t imagine I\u2019d receive such good
+      news."
+    - "Ouvi pelos p\xE1ssaros. N\xE3o achei que fosse receber uma not\xEDcia t\xE3o
+      boa."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I believe I\u2019m starting to get what you want. KAKAKAKA!"
+    - "Acho que estou entendendo o que voc\xEA quer. KAKAKAKA!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Your eyes reveal everything, my Queen.
+    - Seus olhos revelam tudo, minha Rainha.
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Go on and explain what happened.
+    - Explica logo o que aconteceu.
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - After marrying Prince Florian, I started life in the castle.
+    - "Depois de me casar com o Pr\xEDncipe Florian, fui viver no castelo."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I thought I\u2019d live a fairy tale life!"
+    - Pensei que ia viver um conto de fadas!
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "That *CENSORED* showed his true colors\u2026"
+    - Aquele *CENSURADO* revelou sua face verdadeira.
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Having the fairest in all the land was all it took for that cretin to stop
+      caring about me.
+    - "Foi s\xF3 conseguir a mais bela do reino, que aquele cretino parou de me dar
+      valor."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "First he starts getting very busy\u2026 then new women start appearing\u2026"
+    - "Primeiro ele come\xE7a a estar muito ocupado\u2026 depois mulheres novas come\xE7am
+      a aparecer\u2026"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - When I tried bringing that up with him, I got screamed at.
+    - Quando eu tentei questionar ele sobre isso, ele gritou comigo.
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - I also noticed how much he drinks. That castle has rooms that purely smell
+      like alcohol.
+    - "Percebi o quanto ele bebe tamb\xE9m. Aquele castelo tem quartos com cheiro
+      puro de \xE1lcool."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I don\u2019t know how many months it\u2019s been, but I\u2019m being confined
+      in a room underground. With guards outside."
+    - "N\xE3o sei quantos meses j\xE1 deu, mas t\xF4 sendo confinada a um quarto
+      no subsolo. Com guardas do lado de fora."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Room my *CENSORED*! I\u2019ve been living in a cell."
+    - "Quarto \xE9 o *CENSURADO*! Estive vivendo numa cela."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - AAAAKKAKA, what a story!
+    - "AAAAKKAKA, uma hist\xF3ria e tanto!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - So you want to kill-
+    - "Ent\xE3o voc\xEA quer matar-"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - The Prince.
+    - "O Pr\xEDncipe."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Perfect! Really marvelous\u2026"
+    - "Perfeito! Que maravilha\u2026"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "You\u2019ve really changed! I\u2019m so proud!"
+    - "Voc\xEA realmente mudou tanto! Que orgulho!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Yeah\u2026 these last two years opened my eyes."
+    - "\xC9\u2026 estes \xFAltimos dois anos abriram meus olhos."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Countless nights have passed where I could only dream to have eaten that apple
+      when I had the chance\u2026"
+    - "Passei incont\xE1veis noites desejando ter comido aquela ma\xE7\xE3 quando
+      tive a chance\u2026"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - But finally, finally, finally
+    - Mas finalmente, finalmente, finalmente
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Finally, I can nip that damn guy that left me to rot by the bud.
+    - "Finalmente, posso cortar pela ra\xEDz o maldito que me deixou apodrecer."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Grimhilde. I don\u2019t only wish for his death, but also his suffering, so
+      help me with your magic."
+    - "Grimhilde. Quero que ele n\xE3o apenas morra, mas sofra, ent\xE3o me ajude
+      com sua magia."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Please.
+    - Por favor.
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Your wish is beautiful\u2026 but you should know I don\u2019t do favors. Perhaps\u2026"
+    - "O seu desejo \xE9 lindo\u2026 mas voc\xEA deve saber que n\xE3o fa\xE7o favores.
+      Talvez\u2026"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Any type of royal title\u2026 a mansion with lots of butlers at my service\u2026
+      a pile of gold, or perhaps, perhaps!"
+    - "Um titulozinho da realeza\u2026 uma mans\xE3o com v\xE1rios mordomos a minha
+      disposi\xE7\xE3o\u2026 uma pilha de ouro, ou talvez, talvez!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Don't worry. After I get what I want, you can become Queen, command the kingdom,
+      *CENSORED*, bring ruin to the kingdom if you want to!
+    - "Se preocupa n\xE3o. Depois que eu conseguir o que quero, pode virar Rainha,
+      pode comandar o reino, *CENSURADO*, leve o reino \xE0 ru\xEDna se quiser!"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I don\u2019t even like the people. You see, I discovered that the Prince's
+      true nature is deep inside all of us. Even myself."
+    - "Nem gostar desse povo eu gosto. Sabe, eu descobri que a natureza verdadeira
+      do pr\xEDncipe est\xE1 no fundo de todo mundo. At\xE9 eu."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Once I feel free, I just want to spend my life away from everyone.
+    - "Quando eu me sentir libertada, s\xF3 quero viver longe de todos."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - I almost shed a tear here!
+    - "Quase soltei uma l\xE1grima aqui!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Don\u2019t say another word. I\u2019ve already got the perfect spell in mind."
+    - "N\xE3o fale mais nada. J\xE1 at\xE9 tenho o feiti\xE7o perfeito em mente."
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - How do you plan on giving it to him? An apple pie? A caramel apple, perhaps?
+    - "De que forma deseja entregar a ele? Uma torta de ma\xE7\xE3? Uma ma\xE7\xE3
+      caramelizada, talvez?"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "An apple alcoholic beverage\u2026 I need to be sure he\u2019ll drink it, and
+      this way, he won\u2019t resist."
+    - "Bebida alc\xF3olica de ma\xE7\xE3. Quero a certeza de que ele ir\xE1 beber,
+      e com isso, ele n\xE3o vai resistir."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "My, how romantic! So you\u2019ll make him drink it yourself? "
+    - "Que rom\xE2ntico! Voc\xEA mesma deve fazer ele beber isso?"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Haha, don\u2019t make me laugh. I can\u2019t even talk to him properly nowadays,
+      just getting close to his food or rooms is impossible."
+    - "Haha, n\xE3o me fa\xE7a rir. Consigo nem falar com ele direito hoje em dia,
+      muito menos chegar perto de suas comidas ou c\xF4modos."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "But I\u2019ve planned that out already."
+    - "Mas j\xE1 planejei isso."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Come here, Berry.
+    - "Venha c\xE1, Berry."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Ugh! What is this wild creature doing here???
+    - "Ugh! O que esse bicho silvestre est\xE1 fazendo aqui???"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Are you done being dramatic there?
+    - "Acabou o drama j\xE1?"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - This is one of the only guys that keep me sane in this world.
+    - "Este \xE9 um dos \xFAnicos que me mant\xE9m s\xE3 neste mundo. "
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "My cute Berry will enter the castle, and go up till he reaches the Prince\u2019s
+      tower to deliver the present."
+    - "Meu pequeno Berry vai entrar no castelo, e subir at\xE9 a torre do Pr\xEDncipe
+      para a entrega de seu presentinho."
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Isn\u2019t that right, my precious cutie?~<3"
+    - "N\xE3o \xE9, meu chuchuzinho?~<3"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "\u2026 "
+    - "\u2026 "
+    speakerID: 4
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "That\u2019s the spirit!"
+    - "Esse \xE9 o esp\xEDrito!"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - Weird youngsters.
+    - Jovens esquisitos.
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - But, Snow White, everything comes at a price!
+    - Mas, Branca de Neve, tudo tem um custo!
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "In this case, it\u2019s just a few sacrifices."
+    - "Neste caso, s\xE3o apenas alguns sacrif\xEDcios."
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "What, do you think it was easy back in my days, honey? At least I had that
+      hunter to help me. So easy to manipulate\u2026"
+    - "Acha que foi f\xE1cil para mim na minha \xE9poca querida? Pelo menos tive
+      aquele ca\xE7ador pra me ajudar. T\xE3o facinho de manipular\u2026"
+    speakerID: 1
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "I see\u2026 can you take care of that, Berry?"
+    - "Entendi\u2026 consegue cuidar disso, Berry?"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "\u2026"
+    - "\u2026"
+    speakerID: 4
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "Aww\u2026 I can always count on you!"
+    - "Aww\u2026 Sempre posso contar com voc\xEA!"
+    speakerID: 0
+    pauseBeforeDialogue: 0
+  - dialogue:
+    - "KAKAKAKA, well then, let\u2019s get to work!"
+    - "KAKAKAKA, m\xE3os \xE0 obra ent\xE3o!"
+    speakerID: 1
+    pauseBeforeDialogue: 0
   DialogueSpeakerArray:
   - speakers:
     - Snow White
     - Branca de Neve
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: 5a55d6fbe81e1bf40a42e1611004e3a4, type: 3}
   - speakers:
     - Grimhilde
     - Grimhilde
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: bd57f16bc73d27f419dada9f50122bf5, type: 3}
   - speakers:
     - 
     - 
@@ -950,4 +1293,156 @@ MonoBehaviour:
   falaTexto: {fileID: 4516085887954367559}
   NomeFalante_Text: {fileID: 4516085889022072345}
   Falante_Image: {fileID: 4516085888540874882}
-  nextScene: 
+  nextScene: Castelo1
+--- !u!1 &6792101916662486056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5327547682892927637}
+  - component: {fileID: 6333040418921033717}
+  - component: {fileID: 3901563471747875429}
+  m_Layer: 5
+  m_Name: SpeakerBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5327547682892927637
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792101916662486056}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.05, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4516085888270554324}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 170, y: 170}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!222 &6333040418921033717
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792101916662486056}
+  m_CullTransparentMesh: 1
+--- !u!114 &3901563471747875429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792101916662486056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8636171174978863712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435605474601903375}
+  - component: {fileID: 1594109020779790164}
+  - component: {fileID: 3247763316991389687}
+  m_Layer: 5
+  m_Name: SpeakerBackgroundWhite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1435605474601903375
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636171174978863712}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4516085888270554324}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 170, y: 170}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!222 &1594109020779790164
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636171174978863712}
+  m_CullTransparentMesh: 1
+--- !u!114 &3247763316991389687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636171174978863712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

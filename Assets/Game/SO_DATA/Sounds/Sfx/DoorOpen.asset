@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoorOpen
   m_EditorClassIdentifier: 
   soundName: DoorOpen
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: ba23c7f44be46a4469a5e2276808b212, type: 3}
   loop: 0
   volume: 1
   pitch: 1

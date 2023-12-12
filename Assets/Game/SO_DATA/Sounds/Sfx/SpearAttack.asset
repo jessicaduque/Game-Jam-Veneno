@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpearAttack
   m_EditorClassIdentifier: 
   soundName: SpearAttack
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 51afbf9baa3d7a248b25f508ba37a1d7, type: 3}
   loop: 0
   volume: 1
   pitch: 1
