@@ -48,9 +48,10 @@ public class PlayerController : MonoBehaviour
     private Door thisDoor;
     private int lastDoorID;
 
+    private AudioManager _audioManager => AudioManager.I;
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         thisRb = GetComponent<Rigidbody2D>();
         transform.position = inicialPos;
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
             input.Player.Jump.performed += JumpPerformed;
             input.Player.Jump.canceled += JumpCancelled;
             input.Player.Dash.performed += OnDashPerformed; // Fundamental ser adicionada após movement devido ao Dash
-            input.Player.AtaqueMorder.performed += OnAttackPerformed;
+            //input.Player.AtaqueMorder.performed += OnAttackPerformed;
         }
         else
         {
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
             input.Player.Jump.performed -= JumpPerformed;
             input.Player.Jump.canceled -= JumpCancelled;
             input.Player.Dash.performed -= OnDashPerformed;
-            input.Player.AtaqueMorder.performed -= OnAttackPerformed;
+            //input.Player.AtaqueMorder.performed -= OnAttackPerformed;
         }
         
     }
@@ -309,18 +310,11 @@ public class PlayerController : MonoBehaviour
             {
                 if(key == thisDoor.GetDoorID())
                 {
-                    if(thisDoor.GetDoorSceneName() == "DialogoFinal")
-                    {
-                        SceneManager.sceneLoaded -= SetPosition;
-                    }
-                    else
-                    {
-                        lastDoorID = thisDoor.GetDoorID();
-                    }
+                    lastDoorID = thisDoor.GetDoorID();
                     thisDoor.GoScene();
                 }
             }
-            // Tocar som de porta trancada
+            _audioManager.PlaySfx("DoorLocked");
             Debug.Log("Sem chave para essa porta.");
         }
         else
@@ -428,7 +422,9 @@ public class PlayerController : MonoBehaviour
 
         if (collision.CompareTag("Key"))
         {
+            Debug.Log(collision.GetComponent<Key>().GetKeyID());
             keyIDs.Add(collision.GetComponent<Key>().GetKeyID());
+            Destroy(collision.gameObject);
         }
     }
 
@@ -442,6 +438,11 @@ public class PlayerController : MonoBehaviour
         {
             input.Player.Interagir.performed -= EnterDoor;
             thisDoor = null;
+        }
+
+        if (collision.CompareTag("Respawn"))
+        {
+            SceneManager.sceneLoaded -= SetPosition;
         }
     }
 

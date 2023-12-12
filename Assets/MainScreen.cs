@@ -39,6 +39,8 @@ public class MainScreen : Singleton<MainScreen>
         b_cred_return.onClick.AddListener(() => ControlCredits(false));
 
         PlayerPrefsSetup();
+
+        _audioManager.PlayMusic("Menu");
     }
     private void PlayerPrefsSetup()
     {

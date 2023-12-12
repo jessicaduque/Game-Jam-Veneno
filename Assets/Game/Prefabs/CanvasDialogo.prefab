@@ -1302,13 +1302,14 @@ MonoBehaviour:
   - speakers:
     - Berry
     - Berry
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: 6432ca84c1a72e141b30ac8544a9a950, type: 3}
   DialoguePanel: {fileID: 4516085888506910078}
   cg_DialoguePanel: {fileID: 4516085888506910066}
   falaTexto: {fileID: 4516085887954367559}
   NomeFalante_Text: {fileID: 4516085889022072345}
   Falante_Image: {fileID: 4516085888540874882}
   nextScene: Castelo1
+  PretoExtra: {fileID: 0}
 --- !u!1 &6792101916662486056
 GameObject:
   m_ObjectHideFlags: 0

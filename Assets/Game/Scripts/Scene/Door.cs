@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     [SerializeField] private GameObject PressE;
 
     private ControleFadePreto _controleFadePreto => ControleFadePreto.I;
+    
 
     private void OnValidate()
     {

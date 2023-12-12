@@ -34,12 +34,13 @@ public class DialogueManager : Singleton<DialogueManager>
 
     [Header("DIALOGUE SPECIFICS")]
     [SerializeField] public string nextScene;
+    [SerializeField] GameObject PretoExtra;
 
     // Objetos específicos
     // NENHUM AINDA
 
     private ControleFadePreto _controleFadePreto => ControleFadePreto.I;
-    private AudioManager audioManager => AudioManager.I;
+    private AudioManager _audioManager => AudioManager.I;
     //private PausePanel _pausePanel => PausePanel.I;
 
     private void OnValidate()
@@ -70,7 +71,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private IEnumerator ComecarFalas()
     {
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(0.4f);
+        _audioManager.PlaySfx("DoorKnock");
         DialoguePanel.SetActive(true);
         cg_DialoguePanel.DOFade(1, 0.8f).OnComplete(() => falasRodando = true);
         falasRodando = true;
@@ -89,6 +91,11 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         else
         {
+            if (numeroFala == 9)
+            {
+                PretoExtra.GetComponent<CanvasGroup>().DOFade(0, 0.6f);
+            }
+
             if (tempo >= DialogueDetailsArray[numeroFala].pauseBeforeDialogue)
             {
                 ScriptFalas();
@@ -96,7 +103,6 @@ public class DialogueManager : Singleton<DialogueManager>
             else
             {
                 falaTexto.text = "";
-                DialoguePanel.SetActive(false);
             }
         }
     }
@@ -113,7 +119,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         if(speaker == "Berry")
         {
-            audioManager.PlaySfx("BerryGrowl");
+            _audioManager.PlaySfx("BerryGrowl");
         }
         else
         {
