@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
     bool isOnPlatform;
 
     [Header("ANIMATION")]
-    private bool actionHappening;
+    private bool attackHappening;
+    private bool dashHappening;
 
     [Header("DOORS")]
     private List<int> keyIDs = new List<int>();
@@ -53,8 +54,12 @@ public class PlayerController : MonoBehaviour
         thisRb = GetComponent<Rigidbody2D>();
         transform.position = inicialPos;
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
-        input = new CustomInputs();
 
+        input = new CustomInputs();
+    }
+
+    private void Start()
+    {
         SceneManager.sceneLoaded += SetPosition;
     }
 
@@ -72,11 +77,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!actionHappening)
+        if (!dashHappening && !attackHappening)
         {
             thisRb.velocity = new Vector2(moveX * moveXDash * moveSpeed, thisRb.velocity.y);
         }
-        else
+        else if(dashHappening)
+        {
+            thisRb.velocity = new Vector2(moveXDash * moveSpeed, 0);
+        }
+        else if (attackHappening)
         {
             thisRb.velocity = new Vector2(moveXDash * moveSpeed, thisRb.velocity.y);
         }
@@ -154,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpPerformed(InputAction.CallbackContext context)
     {
-        if (amountJumps > 0 && !jumped && canJump && !actionHappening)
+        if (amountJumps > 0 && !jumped && canJump && !dashHappening && !attackHappening)
         {
             posYSaida = transform.position.y;
             thisRb.velocity = new Vector2(thisRb.velocity.x, 0);
@@ -181,10 +190,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnDownPerformed(InputAction.CallbackContext context)
     {
-        if (isOnPlatform && !actionHappening)
+        if (isOnPlatform && !dashHappening && !attackHappening)
         {
             StartCoroutine(EnableFeet());
             feetCollider.enabled = false;
+        }
+        else
+        {
+            StopCoroutine(EnableFeet());
+            feetCollider.enabled = true;
         }
     }
 
@@ -212,7 +226,7 @@ public class PlayerController : MonoBehaviour
         dashPress++;
         if (dashPress > 2)
             dashPress = 0;
-        if(dashPress == 1 && !actionHappening)
+        if(dashPress == 1 && !attackHappening && !dashHappening)
         {
             StopCoroutine(DoDashTime());
             StartCoroutine(DoDashTime());
@@ -231,7 +245,7 @@ public class PlayerController : MonoBehaviour
             }
             else if(dashPress == 2)
             {
-                actionHappening = true;
+                dashHappening = true;
                 thisRb.velocity = Vector2.zero;
                 thisAnimator.SetTrigger("Dash");
                 moveXDash = (facingRight ? 4f : -4f);
@@ -247,12 +261,12 @@ public class PlayerController : MonoBehaviour
     #region Attack
     private void OnAttackPerformed(InputAction.CallbackContext context)
     {
-        if (!actionHappening)
+        if (!dashHappening)
         {
             thisAnimator.SetTrigger("Bite");
             thisRb.AddForce(Vector2.up * jumpingPower / 2 * 1, ForceMode2D.Impulse);
             moveXDash = (_facingRight ? 1f : -1f);
-            actionHappening = true;
+            attackHappening = true;
         }
     }
 
@@ -264,7 +278,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float dano)
     {
-        if (!actionHappening)
+        if (!dashHappening && !attackHappening)
         {
             Debug.Log(dano);
             thisAnimator.SetTrigger("Hit");
@@ -345,8 +359,20 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
             moveX = 1;
         }
-        actionHappening = false;
+        if (attackHappening)
+        {
+            StartCoroutine(DelayAttack());
+        }
+       
+        dashHappening = false;
         thisAnimator.ResetTrigger("Bite");
+    }
+
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        attackHappening = false;
     }
 
     private void SetPosition(Scene scene, LoadSceneMode mode)
@@ -375,6 +401,8 @@ public class PlayerController : MonoBehaviour
     public void SetIsOnPlatform(bool state)
     {
         isOnPlatform = state;
+        if (state)
+            SetJump();
     }
 
     #endregion

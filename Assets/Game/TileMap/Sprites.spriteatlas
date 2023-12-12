@@ -55,7 +55,9 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 99e26c136ce0e454bb3a9c439ff581d0, type: 3}
+  - {fileID: 698039535, guid: 99e26c136ce0e454bb3a9c439ff581d0, type: 3}
+  - {fileID: -1623116762, guid: 99e26c136ce0e454bb3a9c439ff581d0, type: 3}
+  - {fileID: 1161664358, guid: 99e26c136ce0e454bb3a9c439ff581d0, type: 3}
   - {fileID: -704549369, guid: 0ff7f7942b862734495414cf4dbab448, type: 3}
   - {fileID: 579692313, guid: 0ff7f7942b862734495414cf4dbab448, type: 3}
   - {fileID: 1990552273, guid: 0ff7f7942b862734495414cf4dbab448, type: 3}
@@ -70,7 +72,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d06faf0ba56277b4eab83c58953e3e33, type: 3}
   - {fileID: 21300000, guid: 1cb6ca7b14c52d444a693cb3b6c5e221, type: 3}
   m_PackedSpriteNamesToIndex:
-  - pilar
+  - pilar_2
+  - pilar_0
+  - pilar_1
   - SET_4
   - SET_5
   - SET_6
